@@ -11,4 +11,6 @@ dependencies {
     implementation(project(":demo-infrastructure"))
 
     implementation("org.springframework.boot:spring-boot-starter")
+
+    testImplementation(testFixtures(project(":demo-domain")))
 }
