@@ -11,8 +11,8 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("mysql:mysql-connector-java")
-    runtimeOnly("com.h2database:h2")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+    testRuntimeOnly("com.h2database:h2")
 }
 
 allOpen {

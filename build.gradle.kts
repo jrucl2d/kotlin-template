@@ -1,14 +1,15 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 plugins {
-    id("org.springframework.boot") version "2.7.5" apply false
-    id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    id("org.jlleitschuh.gradle.ktlint") version "11.1.0"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21" apply false
-    kotlin("plugin.jpa") version "1.6.21" apply false
+    id("org.springframework.boot") apply false
+    id("io.spring.dependency-management")
+    id("org.jlleitschuh.gradle.ktlint")
+    kotlin("jvm")
+    kotlin("plugin.spring") apply false
+    kotlin("plugin.jpa") apply false
 }
 allprojects {
     group = "com.example"
@@ -30,15 +31,22 @@ subprojects {
     apply(plugin = "kotlin-spring")
     apply(plugin = "kotlin-jpa")
 
+    val jacksonVersion: String by project
+    val kotlinLoggingVersion: String by project
+    val mockKVersion: String by project
+    val springBootStarterTestVersion: String by project
+    val junitVersion: String by project
+    val kotestVersion: String by project
+
     dependencies {
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        implementation("io.github.microutils:kotlin-logging:2.1.23")
-        testImplementation("io.mockk:mockk:1.13.2")
-        testImplementation("org.springframework.boot:spring-boot-starter-test:3.0.5")
-        testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-        testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.5")
+        runtimeOnly("io.github.oshai:kotlin-logging:$kotlinLoggingVersion")
+        testImplementation("io.mockk:mockk:$mockKVersion")
+        testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootStarterTestVersion")
+        testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
+        testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
     }
 
     tasks.test {
@@ -46,10 +54,10 @@ subprojects {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
+tasks.withType<KotlinCompile>().configureEach {
+    compilerOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = JvmTarget.JVM_21
     }
 }
 
