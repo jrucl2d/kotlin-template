@@ -1,6 +1,6 @@
 rootProject.name = "demo"
 
-include("demo-domain", "demo-infrastructure", "demo-application", "demo-api")
+include("demo-component", "demo-infrastructure", "demo-application")
 
 // see : https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_version_management
 pluginManagement {

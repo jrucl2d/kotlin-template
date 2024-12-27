@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import: application-db.yml
+---
+################################ local ################################
+spring:
+  config:
+    activate:
+      on-profile: local
+decrypt:
+  secret:
+    key: 12345678901234567890123456789012
+    iv: 1234567890123456

@@ -42,7 +42,7 @@ subprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        runtimeOnly("io.github.oshai:kotlin-logging:$kotlinLoggingVersion")
+        implementation("io.github.oshai:kotlin-logging:$kotlinLoggingVersion")
         testImplementation("io.mockk:mockk:$mockKVersion")
         testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootStarterTestVersion")
         testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
