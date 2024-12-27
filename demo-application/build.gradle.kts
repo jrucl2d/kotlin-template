@@ -8,7 +8,6 @@ tasks.getByName("bootJar") {
 
 dependencies {
     api(project(":demo-domain"))
-    implementation(project(":demo-infrastructure"))
 
     implementation("org.springframework.boot:spring-boot-starter")
 
